@@ -22,4 +22,19 @@ class Subject extends Model
             ]
         ];
     }
+
+    public function grade()
+    {
+        return $this->belongsTo(Grade::class);
+    }
+
+    public function lessons()
+    {
+        return $this->hasMany(Lesson::class);
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'enrollments');
+    }
 }

@@ -8,6 +8,7 @@ class Enrollment extends Model
 {
     protected $fillable = [
         'subject_id',
-        'user_id'
+        'user_id',
+        'status'
     ];
 }

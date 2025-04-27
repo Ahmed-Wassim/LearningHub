@@ -1,0 +1,390 @@
+/* Course Detail Page Styles */
+
+/* Course Header */
+.course-header {
+  background-color: #4361ee;
+  color: white;
+  padding: 60px 0;
+}
+
+.course-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+
+.course-header p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  max-width: 700px;
+}
+
+.course-header-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.course-rating {
+  color: #ffc107;
+  font-weight: 500;
+}
+
+.course-students {
+  font-weight: 500;
+}
+
+/* Course Details Layout */
+.course-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.course-main {
+  flex: 2;
+  min-width: 300px;
+}
+
+.course-sidebar {
+  flex: 1;
+  min-width: 300px;
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 100px;
+}
+
+/* Course Description */
+.course-description {
+  background-color: white;
+  border-radius: 8px;
+  padding: 25px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+.course-description h2 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.course-description h3 {
+  font-size: 1.4rem;
+  margin: 25px 0 15px;
+  color: #333;
+}
+
+.course-description p {
+  margin-bottom: 15px;
+  line-height: 1.7;
+}
+
+.course-description ul {
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+.course-description ul li {
+  margin-bottom: 10px;
+}
+
+/* Course Tabs */
+.course-tabs {
+  display: flex;
+  background-color: white;
+  border-radius: 8px 8px 0 0;
+  overflow: hidden;
+}
+
+.course-tab {
+  padding: 15px 25px;
+  background-color: #f8f9fa;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.course-tab:hover {
+  background-color: #e9ecef;
+}
+
+.course-tab.active {
+  background-color: white;
+  font-weight: 600;
+  color: #4361ee;
+}
+
+.tab-content {
+  background-color: white;
+  border-radius: 0 0 8px 8px;
+  padding: 25px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.tab-pane {
+  display: none;
+}
+
+.tab-pane.active {
+  display: block;
+}
+
+/* Curriculum Section - Enhanced */
+.curriculum-section {
+  margin-bottom: 30px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.curriculum-section h4 {
+  font-size: 1.2rem;
+  margin: 0;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #eee;
+}
+
+.curriculum-item {
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.curriculum-item:last-child {
+  border-bottom: none;
+}
+
+.curriculum-item:hover {
+  background-color: #f0f3ff;
+}
+
+.lesson-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.lesson-title {
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.lesson-duration {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.lesson-status {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  font-size: 0.8rem;
+  margin: 0 15px;
+}
+
+.lesson-status.completed {
+  background-color: #10b981;
+  color: white;
+}
+
+.lesson-status.locked {
+  background-color: #d1d5db;
+  color: #666;
+}
+
+.lesson-action {
+  margin-left: 10px;
+}
+
+.btn-sm {
+  padding: 5px 10px;
+  font-size: 0.9rem;
+}
+
+/* Module Progress */
+.module-progress {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 30px;
+}
+
+.progress-bar {
+  height: 10px;
+  background-color: #e9ecef;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.progress {
+  height: 100%;
+  background-color: #4361ee;
+  border-radius: 5px;
+}
+
+.continue-btn {
+  display: block;
+  margin-top: 15px;
+  padding: 10px 15px;
+}
+
+/* Action Buttons */
+.action-buttons {
+  margin-top: 15px;
+}
+
+.continue-learning-btn {
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* Reviews Section */
+.review {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.review:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.reviewer {
+  display: flex;
+  align-items: center;
+}
+
+.reviewer img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.reviewer h4 {
+  margin-bottom: 2px;
+}
+
+.reviewer span {
+  font-size: 0.9rem;
+  color: #777;
+}
+
+.review-rating {
+  color: #ffc107;
+}
+
+/* Course Sidebar */
+.instructor-card {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.instructor-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.instructor-info h4 {
+  margin-bottom: 5px;
+}
+
+.instructor-info p {
+  color: #777;
+  font-size: 0.9rem;
+}
+
+.course-info-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.course-info-item span {
+  margin-left: 10px;
+}
+
+.enroll-btn {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* FAQ Section */
+.faq-item {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+}
+
+.faq-item h4 {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.faq-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .course-details {
+    flex-direction: column;
+  }
+
+  .course-sidebar {
+    position: static;
+    width: 100%;
+    order: -1;
+  }
+
+  .course-header {
+    padding: 40px 0;
+  }
+
+  .course-header h1 {
+    font-size: 2rem;
+  }
+  
+  .curriculum-item {
+    flex-wrap: wrap;
+  }
+  
+  .lesson-action {
+    margin-top: 10px;
+    width: 100%;
+  }
+  
+  .lesson-action .btn {
+    width: 100%;
+  }
+}

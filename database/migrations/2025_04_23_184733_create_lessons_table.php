@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->string('slug')->unique();
             $table->string('video')->nullable();
             $table->string('thumbnail')->nullable();
-            $table->int('duration');
+            $table->integer('duration');
             $table->text('description');
             $table->string('pdf')->nullable();
             $table->timestamps();

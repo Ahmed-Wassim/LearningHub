@@ -19,6 +19,10 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        if (Auth::check() && Auth::user()->hasRole("super-admin")) {
+            return redirect()->route('admin.dashboard');
+        }
+
         return redirect()->route('home');
     }
 
@@ -33,6 +37,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return response()->noContent();
+        return redirect()->route('login.index');
     }
 }

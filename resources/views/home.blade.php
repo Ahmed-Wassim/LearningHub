@@ -22,9 +22,20 @@
                 <a href="#">Courses</a>
                 <a href="#">Categories</a>
                 <a href="#">About</a>
+
                 @auth
-                    {{-- <a href="{{ route('dashboard.index') }}" class="btn btn-outline">Dashboard</a> --}}
+                    @if (auth()->user()->hasRole('admin'))
+                        <a href="{{ route('admin.dashboard') }}">Admin Dashboard</a>
+                    @elseif(auth()->user()->hasRole('teacher'))
+                        {{-- <a href="{{ route('teacher.dashboard') }}">Teacher Dashboard</a> --}}
+                    @endif
+
+                    <form method="POST" action="{{ route('logout') }}" style="display: inline;">
+                        @csrf
+                        <button type="submit" class="btn btn-link">Logout</button>
+                    </form>
                 @endauth
+
                 @guest
                     <a href="{{ route('login.index') }}" class="btn btn-outline">Login</a>
                 @endguest

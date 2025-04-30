@@ -27,6 +27,11 @@ class Level extends Model
         ];
     }
 
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
+
     public function grades()
     {
         return $this->hasMany(Grade::class);

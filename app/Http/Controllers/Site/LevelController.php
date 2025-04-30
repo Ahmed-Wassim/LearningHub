@@ -10,7 +10,7 @@ class LevelController extends Controller
 {
     public function index()
     {
-        $levels = Level::all();
+        $levels = Level::withCount('grades')->get();
 
         return view('site.levels', compact('levels'));
     }

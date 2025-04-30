@@ -59,6 +59,14 @@
                                 </li>
                             </ul>
                         </li>
+                        <li class="{{ request()->is('admin/grades*') ? 'active' : '' }}">
+                            <a href="#Grades" class="has-arrow"><i class="icon-home"></i>
+                                <span>Grades</span></a>
+                            <ul>
+                                <li class="active"><a href="{{ route('admin.grades.index') }}">All Grades</a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </nav>
             </div>

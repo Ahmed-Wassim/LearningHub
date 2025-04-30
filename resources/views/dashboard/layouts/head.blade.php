@@ -20,3 +20,4 @@
 <!-- MAIN CSS -->
 <link rel="stylesheet" href="{{ asset('dashboard/light/assets/css/main.css') }}">
 <link rel="stylesheet" href="{{ asset('dashboard/light/assets/css/color_skins.css') }}">
+@yield('css')

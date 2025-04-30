@@ -14,6 +14,10 @@ return new class extends Migration {
             $table->id();
             $table->string('name');
             $table->string('slug')->unique();
+            $table->string('description')->nullable();
+            $table->string('image')->nullable();
+            $table->integer('min_age')->default(0);
+            $table->integer('max_age')->default(0);
             $table->timestamps();
         });
     }

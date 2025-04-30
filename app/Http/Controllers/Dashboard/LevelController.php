@@ -32,22 +32,29 @@ class LevelController extends Controller
     public function store(Request $request)
     {
 
-        if ($request->hasFile('image')) {
-            $request->image = $request
-                ->file('image')
-                ->store('levels', 'public');
+        try {
+            if ($request->hasFile('image')) {
+                $request->image = $request
+                    ->file('image')
+                    ->store('levels', 'public');
+            }
+
+
+            Level::create([
+                'name' => $request->name,
+                'description' => $request->description,
+                'min_age' => $request->min_age,
+                'max_age' => $request->max_age,
+                'image' => $request->image,
+            ]);
+
+            flash()->success('Level created successfully');
+
+            return redirect()->route('admin.levels.index');
+        } catch (\Exception $e) {
+            flash()->error('Error creating level');
+            return redirect()->route('admin.levels.index');
         }
-
-
-        Level::create([
-            'name' => $request->name,
-            'description' => $request->description,
-            'min_age' => $request->min_age,
-            'max_age' => $request->max_age,
-            'image' => $request->image,
-        ]);
-
-        return redirect()->route('admin.levels.index');
     }
 
     /**
@@ -65,27 +72,33 @@ class LevelController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $level = Level::findOrFail($id);
+        try {
+            $level = Level::findOrFail($id);
 
-        if ($request->hasFile('image')) {
-            if ($level->image && file_exists(storage_path('app/public/' . $level->image))) {
-                unlink(storage_path('app/public/' . $level->image));
+            if ($request->hasFile('image')) {
+                if ($level->image && file_exists(storage_path('app/public/' . $level->image))) {
+                    unlink(storage_path('app/public/' . $level->image));
+                }
+
+                $request->image = $request
+                    ->file('image')
+                    ->store('levels', 'public');
             }
 
-            $request->image = $request
-                ->file('image')
-                ->store('levels', 'public');
+            $level->update([
+                'name' => $request->name,
+                'description' => $request->description,
+                'min_age' => $request->min_age,
+                'max_age' => $request->max_age,
+                'image' => $request->image,
+            ]);
+
+            flash()->success('Level updated successfully');
+            return redirect()->route('admin.levels.index');
+        } catch (\Exception $e) {
+            flash()->error('Error updating level');
+            return redirect()->route('admin.levels.index');
         }
-
-        $level->update([
-            'name' => $request->name,
-            'description' => $request->description,
-            'min_age' => $request->min_age,
-            'max_age' => $request->max_age,
-            'image' => $request->image,
-        ]);
-
-        return redirect()->route('admin.levels.index');
     }
 
     /**
@@ -93,14 +106,18 @@ class LevelController extends Controller
      */
     public function destroy(string $id)
     {
-        $level = Level::findOrFail($id);
+        try {
+            $level = Level::findOrFail($id);
 
-        if ($level->image && file_exists(storage_path('app/public/' . $level->image))) {
-            unlink(storage_path('app/public/' . $level->image));
+            if ($level->image && file_exists(storage_path('app/public/' . $level->image))) {
+                unlink(storage_path('app/public/' . $level->image));
+            }
+
+            $level->delete();
+
+            return redirect()->route('admin.levels.index')->with('success', 'Level deleted successfully');
+        } catch (\Exception $e) {
+            return redirect()->route('admin.levels.index')->with('error', 'Error deleting level');
         }
-
-        $level->delete();
-
-        return redirect()->route('admin.levels.index')->with('success', 'Level deleted successfully');
     }
 }

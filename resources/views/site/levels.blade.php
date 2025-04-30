@@ -56,7 +56,8 @@
             @foreach ($levels as $level)
                 <div class="level-card" onclick="window.location.href='primary-school.html'">
                     <div class="level-image">
-                        <img src="/api/placeholder/400/250" alt="Primary School" />
+                        <img src="{{ $level->image ? asset('storage/' . $level->image) : asset('default/school.jpg') }}"
+                            alt="Primary School" />
                     </div>
                     <div class="level-content">
                         <h3 class="level-title">{{ $level->name }}</h3>

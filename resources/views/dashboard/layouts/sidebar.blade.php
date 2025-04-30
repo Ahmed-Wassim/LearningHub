@@ -44,11 +44,19 @@
             <div class="tab-pane active" id="menu">
                 <nav id="left-sidebar-nav" class="sidebar-nav">
                     <ul id="main-menu" class="metismenu">
-                        <li class="active">
+                        <li class="{{ request()->is('admin/dashboard*') ? 'active' : '' }}">
                             <a href="#Dashboard" class="has-arrow"><i class="icon-home"></i>
                                 <span>Dashboard</span></a>
                             <ul>
                                 <li class="active"><a href="index.html">Analytical</a></li>
+                            </ul>
+                        </li>
+                        <li class="{{ request()->is('admin/levels*') ? 'active' : '' }}">
+                            <a href="#Levels" class="has-arrow"><i class="icon-home"></i>
+                                <span>Levels</span></a>
+                            <ul>
+                                <li class="active"><a href="{{ route('admin.levels.index') }}">All Levels</a>
+                                </li>
                             </ul>
                         </li>
                     </ul>

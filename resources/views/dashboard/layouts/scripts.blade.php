@@ -13,3 +13,5 @@
     <script src="{{ asset('dashboard/light/assets/bundles/mainscripts.bundle.js') }}"></script>
 
     <script src="{{ asset('dashboard/light/assets/js/index.js') }}"></script>
+
+    @yield('scripts')

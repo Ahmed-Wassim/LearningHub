@@ -11,7 +11,11 @@ class Level extends Model
 
     protected $fillable = [
         'name',
-        'slug'
+        'slug',
+        'description',
+        'min_age',
+        'max_age',
+        'image',
     ];
 
     public function sluggable(): array

@@ -32,4 +32,9 @@ class Grade extends Model
     {
         return $this->hasMany(Subject::class);
     }
+
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
 }

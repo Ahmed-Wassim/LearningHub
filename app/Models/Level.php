@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
-use Cviebrock\EloquentSluggable\Sluggable;
+use App\Traits\HasImage;
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 class Level extends Model
 {
-    use Sluggable;
+    use Sluggable, HasImage;
 
     protected $fillable = [
         'name',
@@ -15,7 +17,6 @@ class Level extends Model
         'description',
         'min_age',
         'max_age',
-        'image',
     ];
 
     public function sluggable(): array
@@ -36,4 +37,6 @@ class Level extends Model
     {
         return $this->hasMany(Grade::class);
     }
+
+
 }

@@ -15,6 +15,8 @@ return new class extends Migration {
             $table->foreignId('grade_id')->constrained()->cascadeOnDelete();
             $table->string('name');
             $table->string('slug')->unique();
+            $table->decimal('price', 10, 2);
+            $table->boolean('is_free')->default(false);
             $table->timestamps();
         });
     }

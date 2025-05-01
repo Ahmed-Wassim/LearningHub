@@ -2,17 +2,21 @@
 
 namespace App\Models;
 
+use App\Traits\HasImage;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 class Subject extends Model
 {
-    use Sluggable;
+    use Sluggable, HasImage;
 
     protected $fillable = [
         'name',
         'slug',
-        'level_id'
+        'grade_id',
+        'price',
+        'is_free'
     ];
     public function sluggable(): array
     {
@@ -37,4 +41,5 @@ class Subject extends Model
     {
         return $this->belongsToMany(User::class, 'enrollments');
     }
+
 }

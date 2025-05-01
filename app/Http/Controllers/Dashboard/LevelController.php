@@ -33,20 +33,19 @@ class LevelController extends Controller
     {
 
         try {
-            if ($request->hasFile('image')) {
-                $request->image = $request
-                    ->file('image')
-                    ->store('levels', 'public');
-            }
-
-
-            Level::create([
+            $level = Level::create([
                 'name' => $request->name,
                 'description' => $request->description,
                 'min_age' => $request->min_age,
                 'max_age' => $request->max_age,
-                'image' => $request->image,
             ]);
+
+
+            if ($request->hasFile('image')) {
+                $level->uploadImage($request);
+            }
+
+
 
             flash()->success('Level created successfully');
 
@@ -75,16 +74,6 @@ class LevelController extends Controller
         try {
             $level = Level::findOrFail($id);
 
-            if ($request->hasFile('image')) {
-                if ($level->image && file_exists(storage_path('app/public/' . $level->image))) {
-                    unlink(storage_path('app/public/' . $level->image));
-                }
-
-                $request->image = $request
-                    ->file('image')
-                    ->store('levels', 'public');
-            }
-
             $level->update([
                 'name' => $request->name,
                 'description' => $request->description,
@@ -92,6 +81,10 @@ class LevelController extends Controller
                 'max_age' => $request->max_age,
                 'image' => $request->image,
             ]);
+
+            if ($request->hasFile('image')) {
+                $level->replaceImage($request);
+            }
 
             flash()->success('Level updated successfully');
             return redirect()->route('admin.levels.index');
@@ -109,9 +102,7 @@ class LevelController extends Controller
         try {
             $level = Level::findOrFail($id);
 
-            if ($level->image && file_exists(storage_path('app/public/' . $level->image))) {
-                unlink(storage_path('app/public/' . $level->image));
-            }
+            $level->deleteImage();
 
             $level->delete();
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dashboard\SubjectController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\GradeController;
 use App\Http\Controllers\Dashboard\LevelController;
@@ -26,6 +27,8 @@ Route::middleware(['auth', 'admin'])->prefix('/admin')->name('admin.')->group(fu
     Route::post('/grades/generate', [GradeController::class, 'generate'])->name('grades.generate');
     Route::put('/grades/{grade}', [GradeController::class, 'update'])->name('grades.update');
     Route::delete('/grades/{grade}', [GradeController::class, 'destroy'])->name('grades.destroy');
+
+    Route::resource('/subjects', SubjectController::class)->except('show');
 });
 
 Route::view('/login', 'auth.login')->name('login.index')->middleware('guest');

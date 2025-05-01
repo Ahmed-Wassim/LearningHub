@@ -9,11 +9,11 @@
         <div class="row">
             <div class="col-lg-5 col-md-8 col-sm-12">
                 <h2><a href="javascript:void(0);" class="btn btn-xs btn-link btn-toggle-fullwidth"><i
-                            class="fa fa-arrow-left"></i></a> Levels</h2>
+                            class="fa fa-arrow-left"></i></a> Subjects</h2>
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.html"><i class="icon-home"></i></a></li>
-                    <li class="breadcrumb-item">Levels</li>
-                    <li class="breadcrumb-item active">Create Level</li>
+                    <li class="breadcrumb-item">Subject</li>
+                    <li class="breadcrumb-item active">Edit Subject</li>
                 </ul>
             </div>
             <div class="col-lg-7 col-md-4 col-sm-12 text-right">
@@ -34,37 +34,48 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="header">
-                    <h2>Create Level</h2>
+                    <h2>Edit Subject</h2>
                 </div>
                 <div class="body">
-                    <form id="basic-form" action="{{ route('admin.levels.store') }}" enctype="multipart/form-data"
-                        method="post" novalidate>
+                    <form id="basic-form" action="{{ route('admin.subjects.update', $subject->id) }}"
+                        enctype="multipart/form-data" method="post" novalidate>
                         @csrf
+                        @method('PUT')
                         <div class="form-group">
                             <label>Name</label>
-                            <input name="name" type="text" class="form-control" required>
+                            <input name="name" value="{{ $subject->name }}" type="text" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Grade</label>
+                            <select name="grade" class="form-control" required>
+                                <option value="">Select Grade</option>
+                                @foreach ($grades as $grade)
+                                    <option {{ $subject->grade_id == $grade->id ? 'selected' : '' }}
+                                        value="{{ $grade->id }}">{{ $grade->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-12">
                                 <div class="form-group">
-                                    <label for="min_age" class="control-label">Min Age</label>
-                                    <input name="min_age" type="number" id="min-age" class="form-control">
+                                    <label for="is_free">Is Free</label>
+                                    <div class="custom-control custom-switch">
+                                        <input type="checkbox" name="is_free" class="custom-control-input"
+                                            id="is_free_switch">
+                                        <label class="custom-control-label" for="is_free_switch">Yes</label>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-12">
                                 <div class="form-group">
-                                    <label for="max_age" class="control-label">Max Age</label>
-                                    <input name="max_age" type="number" id="max-age" class="form-control">
+                                    <label for="price">Price</label>
+                                    <input value="{{ $subject->price }}" name="price" type="number" step="0.01"
+                                        class="form-control" id="price-input">
                                 </div>
                             </div>
                         </div>
-
-                        <div class="form-group">
-                            <label>Description</label>
-                            <textarea name="description" class="form-control" rows="5" cols="30" required></textarea>
-                        </div>
-
                         <div class="card">
                             <div class="header">
                                 <h2>Upload Photo</h2>
@@ -73,8 +84,9 @@
                                 <input name="image" type="file" class="dropify">
                             </div>
                         </div>
+                        <img src="{{ $subject->getImageUrl() }}" alt="School" style="width: 250px; height: 150px;" />
                         <br>
-                        <button type="submit" class="btn btn-primary">Create</button>
+                        <button type="submit" class="btn btn-primary">Edit</button>
                     </form>
                 </div>
             </div>
@@ -85,4 +97,19 @@
 @section('scripts')
     <script src="{{ asset('dashboard/assets/vendor/dropify/js/dropify.min.js') }}"></script>
     <script src="{{ asset('dashboard/light/assets/js/pages/forms/dropify.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            // Handle is_free checkbox to enable/disable price field
+            $('#is_free_switch').change(function() {
+                if ($(this).is(':checked')) {
+                    $('#price-input').val('0.00').prop('disabled', true);
+                } else {
+                    $('#price-input').prop('disabled', false);
+                }
+            });
+
+            // Trigger the change event to set initial state
+            $('#is_free_switch').change();
+        });
+    </script>
 @endsection

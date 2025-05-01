@@ -5,6 +5,31 @@
 @endsection
 
 @section('content')
+    <div class="block-header">
+        <div class="row">
+            <div class="col-lg-5 col-md-8 col-sm-12">
+                <h2><a href="javascript:void(0);" class="btn btn-xs btn-link btn-toggle-fullwidth"><i
+                            class="fa fa-arrow-left"></i></a> Levels</h2>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html"><i class="icon-home"></i></a></li>
+                    <li class="breadcrumb-item">Levels</li>
+                    <li class="breadcrumb-item active">Create Level</li>
+                </ul>
+            </div>
+            <div class="col-lg-7 col-md-4 col-sm-12 text-right">
+                <div class="inlineblock text-center m-r-15 m-l-15 hidden-sm">
+                    <div class="sparkline text-left" data-type="line" data-width="8em" data-height="20px"
+                        data-line-Width="1" data-line-Color="#00c5dc" data-fill-Color="transparent">3,5,1,6,5,4,8,3</div>
+                    <span>Visitors</span>
+                </div>
+                <div class="inlineblock text-center m-r-15 m-l-15 hidden-sm">
+                    <div class="sparkline text-left" data-type="line" data-width="8em" data-height="20px"
+                        data-line-Width="1" data-line-Color="#f4516c" data-fill-Color="transparent">4,6,3,2,5,6,5,4</div>
+                    <span>Visits</span>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="row clearfix">
         <div class="col-md-12">
             <div class="card">
@@ -20,16 +45,18 @@
                             <input name="name" type="text" class="form-control" required>
                         </div>
 
-                        <div class="col-lg-5 col-md-6 col-sm-12">
-                            <div class="form-group">
-                                <label for="min_age" class="control-label">Min Age</label>
-                                <input name="min_age" type="number" id="min-age" class="form-control">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="min_age" class="control-label">Min Age</label>
+                                    <input name="min_age" type="number" id="min-age" class="form-control">
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-lg-5 col-md-6 col-sm-12">
-                            <div class="form-group">
-                                <label for="max_age" class="control-label">Max Age</label>
-                                <input name="max_age" type="number" id="max-age" class="form-control">
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="max_age" class="control-label">Max Age</label>
+                                    <input name="max_age" type="number" id="max-age" class="form-control">
+                                </div>
                             </div>
                         </div>
 

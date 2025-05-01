@@ -37,7 +37,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($levels as $level)
+                            @forelse ($levels as $level)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $level->name }}</td>
@@ -87,7 +87,11 @@
                                         </div>
                                     </div>
                                 </div>
-                            @endforeach
+                            @empty
+                                <tr>
+                                    <td colspan="7" class="text-center">No Levels found</td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>

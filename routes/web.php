@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Dashbboard\SubjectController;
+use App\Http\Controllers\Dashboard\SubjectController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\GradeController;
 use App\Http\Controllers\Dashboard\LevelController;

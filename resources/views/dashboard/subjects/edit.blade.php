@@ -37,8 +37,8 @@
                     <h2>Edit Subject</h2>
                 </div>
                 <div class="body">
-                    <form id="basic-form" action="{{ route('admin.subjects.update', $subject->id) }}" method="post"
-                        novalidate>
+                    <form id="basic-form" action="{{ route('admin.subjects.update', $subject->id) }}"
+                        enctype="multipart/form-data" method="post" novalidate>
                         @csrf
                         @method('PUT')
                         <div class="form-group">
@@ -76,7 +76,15 @@
                                 </div>
                             </div>
                         </div>
-
+                        <div class="card">
+                            <div class="header">
+                                <h2>Upload Photo</h2>
+                            </div>
+                            <div class="body">
+                                <input name="image" type="file" class="dropify">
+                            </div>
+                        </div>
+                        <img src="{{ $subject->getImageUrl() }}" alt="School" style="width: 250px; height: 150px;" />
                         <br>
                         <button type="submit" class="btn btn-primary">Edit</button>
                     </form>

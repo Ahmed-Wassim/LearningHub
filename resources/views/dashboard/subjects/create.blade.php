@@ -37,7 +37,8 @@
                     <h2>Create Subject</h2>
                 </div>
                 <div class="body">
-                    <form id="basic-form" action="{{ route('admin.subjects.store') }}" method="post" novalidate>
+                    <form id="basic-form" action="{{ route('admin.subjects.store') }}" enctype="multipart/form-data"
+                        method="post" novalidate>
                         @csrf
                         <div class="form-group">
                             <label>Name</label>
@@ -73,7 +74,14 @@
                                 </div>
                             </div>
                         </div>
-
+                        <div class="card">
+                            <div class="header">
+                                <h2>Upload Photo</h2>
+                            </div>
+                            <div class="body">
+                                <input name="image" type="file" class="dropify">
+                            </div>
+                        </div>
                         <br>
                         <button type="submit" class="btn btn-primary">Create</button>
                     </form>

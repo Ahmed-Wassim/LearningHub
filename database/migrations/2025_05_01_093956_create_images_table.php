@@ -10,13 +10,13 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('levels', function (Blueprint $table) {
+        Schema::create('images', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('slug')->unique();
-            $table->string('description')->nullable();
-            $table->integer('min_age')->default(0);
-            $table->integer('max_age')->default(0);
+            $table->string('url');
+            $table->string('filename');
+            $table->string('extension');
+            $table->unsignedBigInteger('size');
+            $table->morphs('imageable');
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('levels');
+        Schema::dropIfExists('images');
     }
 };

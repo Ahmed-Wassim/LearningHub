@@ -34,6 +34,7 @@
                                 <th>Level</th>
                                 <th>Price</th>
                                 <th>is Free</th>
+                                <th>Photo</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -46,7 +47,10 @@
                                     <td>{{ $subject->grade->name }}</td>
                                     <td>{{ $subject->price }}</td>
                                     <td>{{ $subject->is_free ? 'Yes' : 'No' }}</td>
-                                    <td>grades</td>
+                                    <td>
+                                        <img src="{{ $subject->getImageUrl() }}" alt="Primary School"
+                                            style="width: 50px; height: 50px;" />
+                                    </td>
                                     <td>
                                         <a href="{{ route('admin.subjects.edit', $subject) }}"
                                             class="btn btn-primary">Edit</a>

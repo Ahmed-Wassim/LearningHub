@@ -43,8 +43,8 @@
                                     <td>{{ $level->name }}</td>
                                     <td>{{ Str::limit($level->description, 50) }}</td>
                                     <td>
-                                        <img src="{{ $level->image ? asset('storage/' . $level->image) : asset('default/school.jpg') }}"
-                                            alt="Primary School" style="width: 50px; height: 50px;" />
+                                        <img src="{{ $level->getImageUrl() }}" alt="Primary School"
+                                            style="width: 50px; height: 50px;" />
                                     </td>
                                     <td>{{ $level->min_age }} - {{ $level->max_age }}</td>
                                     <td>grades</td>

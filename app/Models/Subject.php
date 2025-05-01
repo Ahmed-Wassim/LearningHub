@@ -12,7 +12,9 @@ class Subject extends Model
     protected $fillable = [
         'name',
         'slug',
-        'level_id'
+        'grade_id',
+        'price',
+        'is_free'
     ];
     public function sluggable(): array
     {

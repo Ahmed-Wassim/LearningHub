@@ -67,6 +67,14 @@
                                 </li>
                             </ul>
                         </li>
+                        <li class="{{ request()->is('admin/subjects*') ? 'active' : '' }}">
+                            <a href="#Subjects" class="has-arrow"><i class="icon-home"></i>
+                                <span>Subjects</span></a>
+                            <ul>
+                                <li class="active"><a href="{{ route('admin.subjects.index') }}">All Subjects</a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </nav>
             </div>

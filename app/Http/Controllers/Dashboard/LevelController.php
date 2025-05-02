@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Dashboard;
 use App\Models\Level;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreLevelRequest;
+use App\Http\Requests\UpdateLevelRequest;
 
 class LevelController extends Controller
 {
@@ -29,7 +31,7 @@ class LevelController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreLevelRequest $request)
     {
 
         try {
@@ -45,13 +47,12 @@ class LevelController extends Controller
                 $level->uploadImage($request);
             }
 
-
-
             flash()->success('Level created successfully');
 
             return redirect()->route('admin.levels.index');
         } catch (\Exception $e) {
-            flash()->error('Error creating level');
+            dd($e->getMessage());
+            flash()->error($e->getMessage());
             return redirect()->route('admin.levels.index');
         }
     }
@@ -59,27 +60,23 @@ class LevelController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Level $level)
     {
-        $level = Level::findOrFail($id);
-
         return view('dashboard.levels.edit', compact('level'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateLevelRequest $request, Level $level)
     {
         try {
-            $level = Level::findOrFail($id);
 
             $level->update([
                 'name' => $request->name,
                 'description' => $request->description,
                 'min_age' => $request->min_age,
                 'max_age' => $request->max_age,
-                'image' => $request->image,
             ]);
 
             if ($request->hasFile('image')) {

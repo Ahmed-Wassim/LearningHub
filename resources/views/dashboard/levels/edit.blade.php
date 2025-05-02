@@ -12,8 +12,8 @@
                     <h2>Edit Level</h2>
                 </div>
                 <div class="body">
-                    <form id="basic-form" action="{{ route('admin.levels.update', $level->id) }}" enctype="multipart/form-data"
-                        method="post" novalidate>
+                    <form id="basic-form" action="{{ route('admin.levels.update', $level->slug) }}"
+                        enctype="multipart/form-data" method="post" novalidate>
                         @csrf
                         @method('put')
                         <div class="form-group">
@@ -49,8 +49,7 @@
                                 <input name="image" type="file" class="dropify">
                             </div>
                         </div>
-                        <img src="{{ $level->image ? asset('storage/' . $level->image) : asset('default/school.jpg') }}"
-                            alt="Primary School" style="width: 250px; height: 150px;" />
+                        <img src="{{ $level->getImageUrl() }}" alt="Primary School" style="width: 250px; height: 150px;" />
                         <br><br><br>
                         <button type="submit" class="btn btn-primary">Edit</button>
                     </form>

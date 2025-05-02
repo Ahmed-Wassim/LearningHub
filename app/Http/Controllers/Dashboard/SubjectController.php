@@ -10,10 +10,20 @@ use App\Http\Controllers\Controller;
 class SubjectController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $subjects = Subject::all();
-        return view('dashboard.subjects.index', compact('subjects'));
+        $query = Subject::query();
+
+        if ($request->filled('grade')) {
+            $query->join('grades', 'subjects.grade_id', '=', 'grades.id')
+                ->where('grades.slug', $request->grade)
+                ->select('subjects.*');
+        }
+
+        $subjects = $query->get();
+        $grades = Grade::all();
+
+        return view('dashboard.subjects.index', compact('subjects', 'grades'));
     }
 
 
@@ -29,8 +39,6 @@ class SubjectController extends Controller
             $subject = Subject::create([
                 'name' => $request->name,
                 'grade_id' => $request->grade,
-                'price' => $request->price ?? 0.0,
-                'is_free' => $request->is_free == 'on' ? true : false,
             ]);
 
             if ($request->hasFile('image')) {
@@ -62,8 +70,8 @@ class SubjectController extends Controller
             $subject->update([
                 'name' => $request->name,
                 'grade_id' => $request->grade,
-                'price' => $request->price ?? 0.0,
-                'is_free' => $request->is_free == 'on' ? true : false,
+                // 'price' => $request->price ?? 0.0,
+                // 'is_free' => $request->is_free == 'on' ? true : false,
             ]);
 
             if ($request->hasFile('image')) {

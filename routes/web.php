@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\Dashboard\SubjectController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\GradeController;
 use App\Http\Controllers\Dashboard\LevelController;
+use App\Http\Controllers\Dashboard\SubjectController;
 use App\Http\Controllers\Site\GradeController as SiteGradeController;
 use App\Http\Controllers\Site\LevelController as SiteLevelController;
+use App\Http\Controllers\Site\SubjectController as SiteSubjectController;
 
 Route::get('/', function () {
     return ['Laravel' => app()->version()];
@@ -38,3 +39,5 @@ Route::view('/register', 'auth.register')->name('register.index');
 Route::get('/levels', [SiteLevelController::class, 'index'])->name('levels.index');
 
 Route::get('/levels/{level}', [SiteGradeController::class, 'index'])->name('levels.grades');
+
+Route::get('/levels/{level}/grades/{grade}', [SiteSubjectController::class, 'index'])->name('levels.grades.subjects');

@@ -55,6 +55,7 @@
                             </select>
                         </div>
 
+                        {{-- 
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-12">
                                 <div class="form-group">
@@ -73,7 +74,7 @@
                                         id="price-input">
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="card">
                             <div class="header">
                                 <h2>Upload Photo</h2>

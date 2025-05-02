@@ -20,6 +20,26 @@
             <div class="card">
                 <div class="header d-flex justify-content-between align-items-center">
                     <h2>Subjects</h2>
+                    <div>
+                        <form action="{{ route('admin.subjects.index') }}" method="GET" class="form-inline">
+                            <div class="input-group mr-2">
+                                <select name="grade" class="form-control">
+                                    <option value="">All Grades</option>
+                                    @foreach ($grades as $grade)
+                                        <option value="{{ $grade->slug }}"
+                                            {{ request('grade') == $grade->slug ? 'selected' : '' }}>
+                                            {{ $grade->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="submit">
+                                        <i class="fa fa-search"></i> Search
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                     <a href="{{ route('admin.subjects.create') }}" class="btn btn-success">
                         <i class="fa fa-plus"></i> Add Subject
                     </a>
@@ -32,8 +52,6 @@
                                 <th>Name</th>
                                 <th>Slug</th>
                                 <th>Level</th>
-                                <th>Price</th>
-                                <th>is Free</th>
                                 <th>Photo</th>
                                 <th>Actions</th>
                             </tr>
@@ -45,8 +63,6 @@
                                     <td>{{ $subject->name }}</td>
                                     <td>{{ Str::limit($subject->slug, 50) }}</td>
                                     <td>{{ $subject->grade->name }}</td>
-                                    <td>{{ $subject->price }}</td>
-                                    <td>{{ $subject->is_free ? 'Yes' : 'No' }}</td>
                                     <td>
                                         <img src="{{ $subject->getImageUrl() }}" alt="Primary School"
                                             style="width: 50px; height: 50px;" />

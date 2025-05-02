@@ -6,14 +6,26 @@ use App\Models\Grade;
 use App\Models\Subject;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreSubjectRequest;
+use App\Http\Requests\UpdateSubjectRequest;
 
 class SubjectController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $subjects = Subject::all();
-        return view('dashboard.subjects.index', compact('subjects'));
+        $query = Subject::query();
+
+        if ($request->filled('grade')) {
+            $query->join('grades', 'subjects.grade_id', '=', 'grades.id')
+                ->where('grades.slug', $request->grade)
+                ->select('subjects.*');
+        }
+
+        $subjects = $query->get();
+        $grades = Grade::all();
+
+        return view('dashboard.subjects.index', compact('subjects', 'grades'));
     }
 
 
@@ -23,14 +35,12 @@ class SubjectController extends Controller
         return view('dashboard.subjects.create', compact('grades'));
     }
 
-    public function store(Request $request)
+    public function store(StoreSubjectRequest $request)
     {
         try {
             $subject = Subject::create([
                 'name' => $request->name,
                 'grade_id' => $request->grade,
-                'price' => $request->price ?? 0.0,
-                'is_free' => $request->is_free == 'on' ? true : false,
             ]);
 
             if ($request->hasFile('image')) {
@@ -54,7 +64,7 @@ class SubjectController extends Controller
         return view('dashboard.subjects.edit', compact('grades', 'subject'));
     }
 
-    public function update(Request $request, string $id)
+    public function update(UpdateSubjectRequest $request, string $id)
     {
         try {
             $subject = Subject::findOrFail($id);
@@ -62,8 +72,6 @@ class SubjectController extends Controller
             $subject->update([
                 'name' => $request->name,
                 'grade_id' => $request->grade,
-                'price' => $request->price ?? 0.0,
-                'is_free' => $request->is_free == 'on' ? true : false,
             ]);
 
             if ($request->hasFile('image')) {

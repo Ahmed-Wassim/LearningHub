@@ -37,7 +37,8 @@
                             <li>Language Arts</li>
                             <li>Social Studies</li>
                         </ul>
-                        <a href="grade-courses.html?level=primary&grade=1" class="btn btn-primary grade-btn">Browse
+                        <a href="{{ route('levels.grades.subjects', [$level->slug, $grade->slug]) }}"
+                            class="btn btn-primary grade-btn">Browse
                             Courses</a>
                     </div>
                 </div>

@@ -10,7 +10,20 @@
             <a href="home.html">Courses</a>
             <a href="education-levels.html">Education Levels</a>
             <a href="#">About</a>
-            <a href="login.html" class="btn btn-outline">Login</a>
+            @guest
+                <a href="{{ route('login.index') }}" class="btn btn-outline">Login</a>
+            @endguest
+            @auth
+                @if (auth()->user()->hasRole('teacher'))
+                @else
+                    <a href="{{ route('teacher.show') }}" class="btn btn-outline">Become A Teacher</a>
+                @endif
+
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="btn btn-outline" style="margin-left: 10px">Logout</button>
+                </form>
+            @endauth
         </div>
     </div>
 </nav>

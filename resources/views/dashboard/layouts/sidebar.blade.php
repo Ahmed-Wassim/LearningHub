@@ -51,6 +51,17 @@
                                 <li class="active"><a href="index.html">Analytical</a></li>
                             </ul>
                         </li>
+                        <li class="{{ request()->is('admin/teachers*') ? 'active' : '' }}">
+                            <a href="#Teachers" class="has-arrow"><i class="icon-home"></i>
+                                <span>Teachers</span></a>
+                            <ul>
+                                <li class="active"><a href="{{ route('admin.teachers.pending') }}">Pending Teachers</a>
+                                </li>
+                                <li class="active"><a href="{{ route('admin.teachers.approved') }}">Approved
+                                        Teachers</a>
+                                </li>
+                            </ul>
+                        </li>
                         <li class="{{ request()->is('admin/levels*') ? 'active' : '' }}">
                             <a href="#Levels" class="has-arrow"><i class="icon-home"></i>
                                 <span>Levels</span></a>

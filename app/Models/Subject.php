@@ -42,4 +42,10 @@ class Subject extends Model
         return $this->belongsToMany(User::class, 'enrollments');
     }
 
+    public function teachers()
+    {
+        return $this->belongsToMany(User::class, 'subject_user')
+            ->withPivot('price', 'status', 'active')
+            ->withTimestamps();
+    }
 }

@@ -30,6 +30,7 @@ trait HasImage
             return null;
         }
 
+
         $file = $request->file($fieldName);
 
         // Validate file is an image

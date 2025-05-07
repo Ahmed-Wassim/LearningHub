@@ -22,7 +22,7 @@ class SubjectController extends Controller
                 ->select('subjects.*');
         }
 
-        $subjects = $query->get();
+        $subjects = $query->with('teachers')->get();
         $grades = Grade::all();
 
         return view('dashboard.subjects.index', compact('subjects', 'grades'));

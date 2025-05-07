@@ -14,7 +14,7 @@
                 <a href="{{ route('login.index') }}" class="btn btn-outline">Login</a>
             @endguest
             @auth
-                @if (auth()->user()->hasRole('teacher'))
+                @if (auth()->user()->hasRole('teacher') || auth()->user()->hasRole('super-admin'))
                 @else
                     <a href="{{ route('teacher.show') }}" class="btn btn-outline">Become A Teacher</a>
                 @endif

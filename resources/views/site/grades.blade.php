@@ -1,7 +1,7 @@
 @extends('site.layouts.app')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('/assets/css/grades.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/grades.css') }}" />
 @endsection
 
 @section('title')
@@ -32,10 +32,11 @@
                     <div class="grade-content">
                         <h3 class="grade-title">Grade {{ $loop->iteration }}</h3>
                         <ul class="grade-subjects">
-                            <li>Mathematics</li>
-                            <li>Science</li>
-                            <li>Language Arts</li>
-                            <li>Social Studies</li>
+                            @forelse ($grade->subjects as $subject)
+                                <li>{{ $subject->name }}</li>
+                            @empty
+                                <li>No Subjects Yet</li>
+                            @endforelse
                         </ul>
                         <a href="{{ route('levels.grades.subjects', [$level->slug, $grade->slug]) }}"
                             class="btn btn-primary grade-btn">Browse

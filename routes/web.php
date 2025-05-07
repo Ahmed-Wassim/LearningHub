@@ -12,7 +12,7 @@ use App\Http\Controllers\Site\TeacherController as SiteTeacherController;
 ;
 
 Route::get('/', function () {
-    return ['Laravel' => app()->version()];
+    return redirect()->route('levels.index');
 });
 
 

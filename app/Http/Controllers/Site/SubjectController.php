@@ -10,7 +10,8 @@ class SubjectController extends Controller
 {
     public function index(Level $level, Grade $grade)
     {
-        $grade->load('subjects');
+        $grade->load('subjects.teachers');
+
         return view('site.subjects', compact('grade', 'level'));
     }
 }

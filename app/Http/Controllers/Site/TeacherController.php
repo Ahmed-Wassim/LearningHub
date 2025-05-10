@@ -18,10 +18,10 @@ class TeacherController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
         $syncData = [];
         foreach ($request['subjects'] as $item) {
             $syncData[$item['subject_id']] = [
+                'bio' => $item['bio'],
                 'price' => $item['price'],
                 'active' => $item['active'] ?? false,
                 'status' => $item['status'] ?? 'pending',
@@ -34,12 +34,10 @@ class TeacherController extends Controller
             ->syncWithoutDetaching($syncData);
 
         foreach ($request['subjects'] as $subjectId => $item) {
-            // Find the pivot record
             $subjectUser = SubjectUser::where('user_id', Auth::id())
                 ->where('subject_id', $item['subject_id'])
                 ->first();
 
-            // Upload image if provided
             if (isset($item['image']) && $request->hasFile("subjects.{$subjectId}.image")) {
 
                 $fakeRequest = new Request();

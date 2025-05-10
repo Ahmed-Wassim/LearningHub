@@ -51,13 +51,21 @@
                                         </div>
                                     </div>
 
-                                    <!-- New Image Upload Field -->
+                                    <!-- New Bio Field -->
+                                    <div class="form-group">
+                                        <label for="bio{{ $subject->id }}">Bio</label>
+                                        <textarea id="bio{{ $subject->id }}" name="subjects[{{ $subject->id }}][bio]"
+                                            placeholder="Enter your bio for this subject" class="bio-input" rows="4" cols="70" disabled></textarea>
+                                    </div>
+
+                                    <!-- Image Upload Field -->
                                     <div class="form-group image-upload-container">
                                         <label class="upload-label" for="image{{ $subject->id }}">Subject
                                             Image</label>
                                         <input type="file" id="image{{ $subject->id }}"
                                             name="subjects[{{ $subject->id }}][image]" class="image-input"
-                                            accept="image/*" onchange="previewImage(this, {{ $subject->id }})">
+                                            accept="image/*" onchange="previewImage(this, {{ $subject->id }})"
+                                            disabled>
                                         <img id="preview{{ $subject->id }}" class="image-preview" src="#"
                                             alt="Preview">
                                     </div>
@@ -79,6 +87,8 @@
             const subjectIdField = document.getElementById('subject_id' + subjectId);
             const priceField = document.getElementById('price' + subjectId);
             const statusField = document.getElementById('status' + subjectId);
+            const bioField = document.getElementById('bio' + subjectId);
+            const imageField = document.getElementById('image' + subjectId);
             const detailsDiv = document.getElementById('details' + subjectId);
 
             if (checkbox.checked) {
@@ -86,13 +96,32 @@
                 subjectIdField.disabled = false;
                 priceField.disabled = false;
                 statusField.disabled = false;
+                bioField.disabled = false;
+                imageField.disabled = false;
                 detailsDiv.style.display = 'block';
             } else {
                 // Disable the fields for this subject
                 subjectIdField.disabled = true;
                 priceField.disabled = true;
                 statusField.disabled = true;
+                bioField.disabled = true;
+                imageField.disabled = true;
                 detailsDiv.style.display = 'none';
+            }
+        }
+
+        function previewImage(input, subjectId) {
+            const preview = document.getElementById('preview' + subjectId);
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                }
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                preview.src = "#";
+                preview.style.display = 'none';
             }
         }
 

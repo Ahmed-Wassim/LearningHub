@@ -10,7 +10,11 @@ class SubjectController extends Controller
 {
     public function index(Level $level, Grade $grade)
     {
-        $grade->load('subjects.teachers');
+        $grade->load([
+            'subjects.teachers' => function ($query) {
+                $query->where('status', 'approved');
+            }
+        ]);
 
         return view('site.subjects', compact('grade', 'level'));
     }

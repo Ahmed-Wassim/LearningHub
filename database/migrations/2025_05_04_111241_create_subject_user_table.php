@@ -14,6 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('subject_id')->constrained()->cascadeOnDelete();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->text('bio')->nullable();
             $table->decimal('price', 8, 2)->default(0);
             $table->enum('status', ['approved', 'pending', 'rejected'])->default('pending');
             $table->boolean('active')->default(false);

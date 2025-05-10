@@ -21,17 +21,14 @@
     </div>
 @endsection
 
-
 @section('content')
     <div class="container" id="courses">
-
         <div class="course-grid" id="grade-courses">
-            <!-- Course cards will be added dynamically -->
-
             @foreach ($grade->subjects as $subject)
-                <div class="course-card" onclick="window.location.href='lesson-course.html'">
+                <div class="course-card"
+                    onclick="window.location.href='{{ route('levels.grades.subjects.teachers', [$level->slug, $grade->slug, $subject->slug]) }}'">
                     <div class="course-image">
-                        <img src="{{ $subject->getImageUrl() }}" alt="Mathematics Course" />
+                        <img src="{{ $subject->getImageUrl() }}" alt="{{ $subject->name }}" />
                     </div>
                     <div class="course-content">
                         @forelse ($subject->teachers as $teacher)

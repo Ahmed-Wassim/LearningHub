@@ -17,6 +17,7 @@ class SubjectUser extends Model
     protected $fillable = [
         'subject_id',
         'user_id',
+        'bio',
         'price',
         'status',
         'active',

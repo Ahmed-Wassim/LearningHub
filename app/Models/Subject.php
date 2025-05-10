@@ -15,8 +15,6 @@ class Subject extends Model
         'name',
         'slug',
         'grade_id',
-        'price',
-        'is_free'
     ];
     public function sluggable(): array
     {
@@ -25,6 +23,11 @@ class Subject extends Model
                 'source' => 'name'
             ]
         ];
+    }
+
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
     }
 
     public function grade()
@@ -45,7 +48,7 @@ class Subject extends Model
     public function teachers()
     {
         return $this->belongsToMany(User::class, 'subject_user')
-            ->withPivot('price', 'status', 'active')
+            ->withPivot('price', 'status', 'active', 'bio')
             ->withTimestamps();
     }
 }

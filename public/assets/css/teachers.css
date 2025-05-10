@@ -1,0 +1,201 @@
+/* teachers.css - Styling for the subject teachers page */
+
+/* Hero section specific styling */
+#subject-hero {
+    background-color: #4a6baf;
+    color: white;
+    padding: 60px 0;
+    text-align: center;
+}
+
+#subject-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+#subject-description {
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto 25px;
+}
+
+#subject-breadcrumbs {
+    font-size: 0.9rem;
+}
+
+#subject-breadcrumbs a {
+    color: #fff;
+    text-decoration: none;
+    transition: opacity 0.3s;
+}
+
+#subject-breadcrumbs a:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+}
+
+/* Teacher grid layout */
+.teacher-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    margin: 50px 0;
+}
+
+/* Teacher card styling */
+.teacher-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.teacher-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.teacher-image {
+    height: 220px;
+    overflow: hidden;
+}
+
+.teacher-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+.teacher-card:hover .teacher-image img {
+    transform: scale(1.05);
+}
+
+.teacher-content {
+    padding: 20px;
+}
+
+.teacher-name {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.teacher-bio {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    height: 80px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.teacher-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+}
+
+.teacher-subjects {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.teacher-rating {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.rating-value {
+    font-weight: 600;
+    color: #333;
+    font-size: 1.1rem;
+}
+
+.rating-stars {
+    color: #ffc107;
+    font-size: 1rem;
+    letter-spacing: -1px;
+}
+
+.btn-primary {
+    background-color: #4a6baf;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    transition: background-color 0.3s;
+    width: 100%;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #3a5596;
+}
+
+/* Empty state styling */
+.no-teachers {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    border: 1px dashed #dee2e6;
+}
+
+.no-teachers h3 {
+    color: #495057;
+    margin-bottom: 10px;
+    font-size: 1.3rem;
+}
+
+.no-teachers p {
+    color: #6c757d;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .teacher-grid {
+        grid-template-columns: 1fr;
+    }
+
+    #subject-title {
+        font-size: 2rem;
+    }
+
+    .teacher-bio {
+        height: auto;
+        -webkit-line-clamp: 4;
+    }
+}
+
+@media (max-width: 576px) {
+    #subject-hero {
+        padding: 40px 0;
+    }
+
+    .teacher-meta {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .teacher-rating {
+        margin-top: 10px;
+        align-items: flex-start;
+    }
+}

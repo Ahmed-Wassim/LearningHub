@@ -47,6 +47,8 @@ class TeacherController extends Controller
             }
         }
 
+        Auth::user()->assignRole('teacher');
+
         return redirect()->route('levels.index')->with('success', 'Your Application Has Been Send');
     }
 }

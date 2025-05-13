@@ -5,10 +5,13 @@ use App\Http\Controllers\Dashboard\GradeController;
 use App\Http\Controllers\Dashboard\LevelController;
 use App\Http\Controllers\Dashboard\SubjectController;
 use App\Http\Controllers\Dashboard\TeacherController;
+use App\Http\Controllers\Site\DashboardController as SiteDashboardController;
 use App\Http\Controllers\Site\SubjectTeacherController;
 use App\Http\Controllers\Site\GradeController as SiteGradeController;
+use App\Http\Controllers\Site\LessonController;
 use App\Http\Controllers\Site\LevelController as SiteLevelController;
 use App\Http\Controllers\Site\SubjectController as SiteSubjectController;
+use App\Http\Controllers\Site\SubjectUserDetailController;
 use App\Http\Controllers\Site\TeacherController as SiteTeacherController;
 ;
 
@@ -54,3 +57,8 @@ Route::get('/levels/{level}/grades/{grade}/subjects/{subject}', [SubjectTeacherC
 
 Route::get('/become-teacher', [SiteTeacherController::class, 'show'])->name('teacher.show');
 Route::post('/become-teacher', [SiteTeacherController::class, 'store'])->name('teacher.store');
+Route::get('/teacher/dashboard', [SiteDashboardController::class, 'index'])->middleware('teacher')->name('teacher.dashboard');
+Route::post('/lessons', [LessonController::class, 'store'])->middleware('teacher')->name('lessons.store');
+Route::get('/manage-course/{id}', [SiteDashboardController::class, 'manageSubject'])->middleware('teacher')->name('manage-course');
+Route::get('/resource/download', [LessonController::class, 'download'])->middleware('teacher')->name('download-resource');
+Route::post('/manage-course/{id}/description', [SubjectUserDetailController::class, 'store'])->middleware('teacher')->name('course-description.store');

@@ -4,22 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Lesson extends Model
+class SubjectUserDetail extends Model
 {
     protected $fillable = [
         'subject_user_id',
-        'title',
-        'description',
-        'duration'
+        'short_description',
+        'long_description',
     ];
 
     public function subjectUser()
     {
         return $this->belongsTo(SubjectUser::class, 'subject_user_id');
-    }
-
-    public function resource()
-    {
-        return $this->HasOne(Resource::class);
     }
 }

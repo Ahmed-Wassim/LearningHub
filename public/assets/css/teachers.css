@@ -168,6 +168,49 @@
     color: #6c757d;
 }
 
+/* Make teacher cards clickable */
+.teacher-card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.teacher-card-link:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.teacher-card-link .teacher-card {
+    height: 100%;
+}
+
+/* Ensure text color remains the same when using links */
+.teacher-card-link:hover .teacher-name,
+.teacher-card-link:hover .teacher-bio,
+.teacher-card-link:hover .teacher-meta {
+    color: inherit;
+}
+
+/* Add a subtle indicator that the card is clickable */
+.teacher-card-link .teacher-card::after {
+    content: "";
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='rgba(0,0,0,0.3)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6'%3E%3C/path%3E%3Cpolyline points='15 3 21 3 21 9'%3E%3C/polyline%3E%3Cline x1='10' y1='14' x2='21' y2='3'%3E%3C/line%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.teacher-card-link:hover .teacher-card::after {
+    opacity: 1;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .teacher-grid {

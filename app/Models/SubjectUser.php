@@ -23,9 +23,9 @@ class SubjectUser extends Model
         'active',
     ];
 
-    public function user()
+    public function teacher()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function subject()
@@ -41,5 +41,24 @@ class SubjectUser extends Model
     public function subjectUserDetail()
     {
         return $this->hasOne(SubjectUserDetail::class);
+    }
+
+    public function enrollments()
+    {
+        return $this->hasMany(Enrollment::class);
+    }
+
+    public function freeLessons()
+    {
+        return $this->hasMany(Lesson::class)
+            ->where('is_free', true)
+            ->orderBy('created_at', 'desc');
+    }
+
+    public function premiumLessons()
+    {
+        return $this->hasMany(Lesson::class)
+            ->where('is_free', false)
+            ->orderBy('created_at', 'desc');
     }
 }

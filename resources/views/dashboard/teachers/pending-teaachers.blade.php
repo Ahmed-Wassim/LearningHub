@@ -26,7 +26,7 @@
                             <div class="col-lg-4 col-md-6 mb-4">
                                 <div class="card">
                                     <div class="card-header bg-light">
-                                        <h5 class="mb-0">{{ $requests->first()->user->name }}</h5>
+                                        <h5 class="mb-0">{{ $requests->first()->teacher->name }}</h5>
                                     </div>
                                     <div class="card-body">
                                         <div class="table-responsive">

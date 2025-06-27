@@ -640,7 +640,7 @@
                         <div class="form-group full-width">
                             <label for="course-short-description">Short Description:</label>
                             <input type="text" id="course-short-description" name="short_description"
-                                value="{{ $subject->subjectUserDetail->short_description ?? 'Learn HTML, CSS, JavaScript, React, Node and more' }}"
+                                value="{{ $subject->subjectUserDetail?->short_description }}"
                                 placeholder="Enter a brief, compelling description of your course" maxlength="150"
                                 class="form-control" />
                             <div class="char-count"><span id="short-desc-count">0</span>/150</div>
@@ -649,7 +649,7 @@
                         <!-- Long Description Field with Rich Text Editor -->
                         <div class="form-group full-width">
                             <label for="course-long-description">Detailed Description:</label>
-                            <textarea id="course-long-description" name="long_description" class="form-control">{{ $subject->subjectUserDetail->long_description ?? 'This comprehensive web development bootcamp takes you from absolute beginner to professional developer. You\'ll learn HTML, CSS, JavaScript, React, Node.js, Express, MongoDB and more through hands-on projects and real-world applications. By the end of this course, you\'ll have built multiple portfolio-worthy projects and gained the skills needed for a career in web development.' }}</textarea>
+                            <textarea id="course-long-description" name="long_description" class="form-control">{{ $subject->subjectUserDetail?->long_description }}</textarea>
                         </div>
 
                         <!-- Success or error messages -->
@@ -662,8 +662,6 @@
             <div class="dashboard-section">
                 <div class="section-header">
                     <h2>Course Lessons</h2>
-                    <a href="{{ route('lessons.store') }}" class="btn btn-primary" id="addLessonBtn">Add New
-                        Lesson</a>
                 </div>
 
                 <div class="lesson-list">
@@ -677,7 +675,7 @@
                                     <span class="lesson-duration">{{ $lesson->duration }} mins</span>
                                 </div>
                                 <div class="lesson-description">
-                                    {{ Str::words($lesson->description, 20) }}
+                                    {!! Str::words($lesson->description, 20) !!}
                                 </div>
                                 <div class="lesson-resources">
                                     @if ($lesson->resource && $lesson->resource->pdf)

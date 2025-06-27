@@ -13,7 +13,7 @@ class SubjectTeacherController extends Controller
 {
     public function index(Level $level, Grade $grade, Subject $subject)
     {
-        $subjectTeachers = SubjectUser::with(['user', 'image'])
+        $subjectTeachers = SubjectUser::with(['teacher', 'image'])
             ->where('subject_id', $subject->id)
             ->where('status', 'approved')
             ->get()

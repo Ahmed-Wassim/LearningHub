@@ -49,10 +49,35 @@ class User extends Authenticatable
         ];
     }
 
-    public function subjects()
+    public function teachingSubjects()
     {
         return $this->belongsToMany(Subject::class, 'subject_user')
             ->withPivot('price', 'status', 'active', 'bio')
             ->withTimestamps();
     }
+
+    public function enrolledCourses()
+    {
+        return $this->hasMany(Enrollment::class, 'student_id');
+    }
+
+    public function hasEnrolledIn($courseId)
+    {
+        return $this->enrolledCourses()
+            ->where('subject_user_id', $courseId)
+            ->exists();
+    }
+
+
+    public function hasPurchased(SubjectUser $course)
+    {
+        return $this->courses->contains($course);
+    }
+
+    public function isStudent()
+    {
+        return $this->hasRole('student');
+    }
+
+    
 }

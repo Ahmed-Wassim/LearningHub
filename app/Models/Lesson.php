@@ -10,10 +10,11 @@ class Lesson extends Model
         'subject_user_id',
         'title',
         'description',
-        'duration'
+        'duration',
+        'is_free'
     ];
 
-    public function subjectUser()
+    public function course()
     {
         return $this->belongsTo(SubjectUser::class, 'subject_user_id');
     }

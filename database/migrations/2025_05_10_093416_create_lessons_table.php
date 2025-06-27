@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->string('title');
             $table->text('description')->nullable();
             $table->integer('duration')->unsigned()->default(0);
+            $table->boolean('is_free')->default(false);
             $table->timestamps();
         });
     }

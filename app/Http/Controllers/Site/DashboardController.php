@@ -11,7 +11,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $subjects = SubjectUser::with(['user', 'subject.grade', 'image'])
+        $subjects = SubjectUser::with(['teacher', 'subject.grade', 'image'])
             ->where("user_id", Auth::user()->id)
             ->where('status', 'approved')
             ->get();

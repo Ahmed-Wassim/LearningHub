@@ -30,7 +30,7 @@ class TeacherController extends Controller
         }
 
         Auth::user()
-            ->subjects()
+            ->teachingSubjects()
             ->syncWithoutDetaching($syncData);
 
         foreach ($request['subjects'] as $subjectId => $item) {

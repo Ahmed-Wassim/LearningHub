@@ -11,7 +11,7 @@ class TeacherController extends Controller
 {
     public function index()
     {
-        $teachers = SubjectUser::with(['user', 'subject', 'image'])
+        $teachers = SubjectUser::with(['teacher', 'subject', 'image'])
             ->where('status', 'approved')
             ->get()
             ->groupBy('user_id');  // Group by teacher ID
@@ -21,7 +21,7 @@ class TeacherController extends Controller
     }
     public function pending()
     {
-        $teachers = SubjectUser::with(['user', 'subject', 'image'])
+        $teachers = SubjectUser::with(['teacher', 'subject', 'image'])
             ->where('status', 'pending')
             ->get();
 

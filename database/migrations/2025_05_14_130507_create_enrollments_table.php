@@ -12,9 +12,12 @@ return new class extends Migration {
     {
         Schema::create('enrollments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('subject_id')->constrained()->cascadeOnDelete();
-            $table->boolean('status')->default(0);
+            $table->foreignId('student_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('subject_user_id')->constrained('subject_user')->cascadeOnDelete();
+            $table->integer('payment_id')->nullable();
+            $table->enum('status', ['pending', 'completed', 'failed'])->default('pending');
+            $table->string('payment_method')->nullable();
+            $table->decimal('amount', 8, 2)->default(0);
             $table->timestamps();
         });
     }

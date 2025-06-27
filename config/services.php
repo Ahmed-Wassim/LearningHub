@@ -28,6 +28,14 @@ return [
         'key' => env('RESEND_KEY'),
     ],
 
+    'paymob' => [
+        'api_key' => env('PAYMOB_API_KEY'),
+        'integration_id' => env('PAYMOB_INTEGRATION_ID'),
+        'card_integration_id' => env('PAYMOB_CARD_INTEGRATION_ID'),
+        'wallet_integration_id' => env('PAYMOB_WALLET_INTEGRATION_ID'),
+        'iframe_id' => env('PAYMOB_IFRAME_ID'),
+    ],
+
     'slack' => [
         'notifications' => [
             'bot_user_oauth_token' => env('SLACK_BOT_USER_OAUTH_TOKEN'),

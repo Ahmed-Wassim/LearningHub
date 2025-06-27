@@ -21,7 +21,7 @@
         @else
             <div class="row clearfix">
                 @foreach ($teachers as $userId => $subjectUsers)
-                    @php $teacher = $subjectUsers->first()->user; @endphp
+                    @php $teacher = $subjectUsers->first()->teacher; @endphp
                     <div class="col-md-12 mb-4">
                         <div class="card">
                             <div class="card-header bg-light">

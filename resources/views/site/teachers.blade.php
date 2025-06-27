@@ -28,34 +28,36 @@
             @forelse ($subjectTeachers as $user_id => $teacherEntries)
                 @php
                     $teacherEntry = $teacherEntries->first();
-                    $teacher = $teacherEntry->user;
+                    $teacher = $teacherEntry->teacher;
                     $image = $teacherEntry->getImageUrl();
                     $bio = $teacherEntry->bio;
+                    // dd($teacherEntry, $teacher, $image, $bio);
                 @endphp
-
-                <div class="teacher-card">
-                    <div class="teacher-image">
-                        @if ($image)
-                            <img src="{{ asset($image) }}" alt="{{ $teacher->name }}" />
-                        @else
-                            <img src="{{ asset('default/Haha.jpg') }}" alt="{{ $teacher->name }}" />
-                        @endif
-                    </div>
-                    <div class="teacher-content">
-                        <h3 class="teacher-name">{{ $teacher->name }}</h3>
-                        <p class="teacher-bio">{{ $bio ?? 'No biography available.' }}</p>
-                        <div class="teacher-meta">
-                            <div class="teacher-subjects">
-                                <strong>Experience:</strong> {{ $teacher->experience ?? 'Not specified' }}
-                            </div>
-                            <div class="teacher-rating">
-                                <span class="rating-value">{{ $teacher->rating ?? '4.5' }}</span>
-                                <span class="rating-stars">★★★★☆</span>
+                <a href="{{ route('levels.grades.subjects.teachers.detail', [$level->slug, $grade->slug, $subject->slug, $teacherEntry->id]) }}"
+                    class="teacher-card-link">
+                    <div class="teacher-card">
+                        <div class="teacher-image">
+                            @if ($image)
+                                <img src="{{ asset($image) }}" alt="{{ $teacher->name }}" />
+                            @else
+                                <img src="{{ asset('default/Haha.jpg') }}" alt="{{ $teacher->name }}" />
+                            @endif
+                        </div>
+                        <div class="teacher-content">
+                            <h3 class="teacher-name">{{ $teacher->name }}</h3>
+                            <p class="teacher-bio">{{ $bio ?? 'No biography available.' }}</p>
+                            <div class="teacher-meta">
+                                <div class="teacher-subjects">
+                                    <strong>Experience:</strong> {{ $teacher->experience ?? 'Not specified' }}
+                                </div>
+                                <div class="teacher-rating">
+                                    <span class="rating-value">{{ $teacher->rating ?? '4.5' }}</span>
+                                    <span class="rating-stars">★★★★☆</span>
+                                </div>
                             </div>
                         </div>
-                        {{-- <a href="{{ route('teachers.show', $teacher->id) }}" class="btn btn-primary">View Profile</a> --}}
                     </div>
-                </div>
+                </a>
             @empty
                 <div class="no-teachers">
                     <h3>No teachers available for this subject yet</h3>

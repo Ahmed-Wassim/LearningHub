@@ -35,10 +35,9 @@ class Subject extends Model
         return $this->belongsTo(Grade::class);
     }
 
-
-    public function users()
+    public function courseOfferings()
     {
-        return $this->belongsToMany(User::class, 'enrollments');
+        return $this->hasMany(SubjectUser::class);
     }
 
     public function teachers()

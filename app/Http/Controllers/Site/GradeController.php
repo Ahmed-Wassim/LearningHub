@@ -11,7 +11,7 @@ class GradeController extends Controller
 {
     public function index(Level $level)
     {
-        $level->load('grades')->loadCount('grades');
+        $level->load('grades.subjects')->loadCount('grades');
 
         return view('site.grades', compact('level'));
     }

@@ -12,14 +12,11 @@ return new class extends Migration {
     {
         Schema::create('lessons', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('subject_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('subject_user_id')->constrained('subject_user')->cascadeOnDelete();
             $table->string('title');
-            $table->string('slug')->unique();
-            $table->string('video')->nullable();
-            $table->string('thumbnail')->nullable();
-            $table->integer('duration');
-            $table->text('description');
-            $table->string('pdf')->nullable();
+            $table->text('description')->nullable();
+            $table->integer('duration')->unsigned()->default(0);
+            $table->boolean('is_free')->default(false);
             $table->timestamps();
         });
     }

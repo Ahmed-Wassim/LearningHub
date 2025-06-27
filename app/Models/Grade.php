@@ -28,6 +28,11 @@ class Grade extends Model
         return $this->belongsTo(Level::class);
     }
 
+    public function HasSubjects()
+    {
+        return $this->hasMany(Subject::class)->exists();
+    }
+
     public function subjects()
     {
         return $this->hasMany(Subject::class);

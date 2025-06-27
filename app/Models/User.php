@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Traits\HasImage;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -11,7 +13,7 @@ use Spatie\Permission\Traits\HasRoles;
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, HasRoles;
+    use HasFactory, Notifiable, HasRoles, HasImage;
 
     /**
      * The attributes that are mass assignable.
@@ -47,8 +49,35 @@ class User extends Authenticatable
         ];
     }
 
-    public function subjects()
+    public function teachingSubjects()
     {
-        return $this->belongsToMany(Subject::class);
+        return $this->belongsToMany(Subject::class, 'subject_user')
+            ->withPivot('price', 'status', 'active', 'bio')
+            ->withTimestamps();
     }
+
+    public function enrolledCourses()
+    {
+        return $this->hasMany(Enrollment::class, 'student_id');
+    }
+
+    public function hasEnrolledIn($courseId)
+    {
+        return $this->enrolledCourses()
+            ->where('subject_user_id', $courseId)
+            ->exists();
+    }
+
+
+    public function hasPurchased(SubjectUser $course)
+    {
+        return $this->courses->contains($course);
+    }
+
+    public function isStudent()
+    {
+        return $this->hasRole('student');
+    }
+
+    
 }

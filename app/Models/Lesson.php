@@ -3,34 +3,24 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Cviebrock\EloquentSluggable\Sluggable;
 
 class Lesson extends Model
 {
-    use Sluggable;
-
     protected $fillable = [
+        'subject_user_id',
         'title',
-        'video',
-        'thumbnail',
-        'duration',
         'description',
-        'pdf',
-        'slug',
-        'subject_id'
+        'duration',
+        'is_free'
     ];
 
-    public function sluggable(): array
+    public function course()
     {
-        return [
-            'slug' => [
-                'source' => 'title'
-            ]
-        ];
+        return $this->belongsTo(SubjectUser::class, 'subject_user_id');
     }
 
-    public function subject()
+    public function resource()
     {
-        return $this->belongsTo(Subject::class);
+        return $this->HasOne(Resource::class);
     }
 }

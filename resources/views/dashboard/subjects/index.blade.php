@@ -51,7 +51,8 @@
                                 <th>#</th>
                                 <th>Name</th>
                                 <th>Slug</th>
-                                <th>Level</th>
+                                <th>Grade</th>
+                                <th>Teachers</th>
                                 <th>Photo</th>
                                 <th>Actions</th>
                             </tr>
@@ -63,6 +64,13 @@
                                     <td>{{ $subject->name }}</td>
                                     <td>{{ Str::limit($subject->slug, 50) }}</td>
                                     <td>{{ $subject->grade->name }}</td>
+                                    <td>
+                                        @forelse ($subject->teachers as $teacher)
+                                            <span class="badge badge-primary">{{ $teacher->name }}</span>
+                                        @empty
+                                            <span class="badge badge-secondary">No teachers assigned</span>
+                                        @endforelse
+                                    </td>
                                     <td>
                                         <img src="{{ $subject->getImageUrl() }}" alt="Primary School"
                                             style="width: 50px; height: 50px;" />

@@ -15,8 +15,6 @@ class Subject extends Model
         'name',
         'slug',
         'grade_id',
-        'price',
-        'is_free'
     ];
     public function sluggable(): array
     {
@@ -27,19 +25,25 @@ class Subject extends Model
         ];
     }
 
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
+
     public function grade()
     {
         return $this->belongsTo(Grade::class);
     }
 
-    public function lessons()
+    public function courseOfferings()
     {
-        return $this->hasMany(Lesson::class);
+        return $this->hasMany(SubjectUser::class);
     }
 
-    public function users()
+    public function teachers()
     {
-        return $this->belongsToMany(User::class, 'enrollments');
+        return $this->belongsToMany(User::class, 'subject_user')
+            ->withPivot('price', 'status', 'active', 'bio')
+            ->withTimestamps();
     }
-
 }

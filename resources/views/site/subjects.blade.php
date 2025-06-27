@@ -21,37 +21,21 @@
     </div>
 @endsection
 
-
 @section('content')
     <div class="container" id="courses">
-        <div class="filter-section">
-            <div class="filter-options">
-                <select id="subject-filter">
-                    <option value="all">All Subjects</option>
-                    <option value="math">Mathematics</option>
-                    <option value="science">Science</option>
-                    <option value="language">Language Arts</option>
-                    <option value="social">Social Studies</option>
-                </select>
-                <select id="sort-filter">
-                    <option value="popular">Most Popular</option>
-                    <option value="newest">Newest</option>
-                    <option value="price-low">Price: Low to High</option>
-                    <option value="price-high">Price: High to Low</option>
-                </select>
-            </div>
-        </div>
-
         <div class="course-grid" id="grade-courses">
-            <!-- Course cards will be added dynamically -->
-
             @foreach ($grade->subjects as $subject)
-                <div class="course-card" onclick="window.location.href='lesson-course.html'">
+                <div class="course-card"
+                    onclick="window.location.href='{{ route('levels.grades.subjects.teachers', [$level->slug, $grade->slug, $subject->slug]) }}'">
                     <div class="course-image">
-                        <img src="{{ $subject->getImageUrl() }}" alt="Mathematics Course" />
+                        <img src="{{ $subject->getImageUrl() }}" alt="{{ $subject->name }}" />
                     </div>
                     <div class="course-content">
-                        <span class="course-category">Teachers</span>
+                        @forelse ($subject->teachers as $teacher)
+                            <span class="course-category">{{ $teacher->name }}</span>
+                        @empty
+                            <span class="course-category">No Teachers Yet</span>
+                        @endforelse
                         <h3 class="course-title">{{ $subject->name }}</h3>
                         <p>
                             Explore foundational concepts through engaging activities that develop critical thinking across
